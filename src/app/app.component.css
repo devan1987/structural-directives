@@ -1,0 +1,13 @@
+p {
+  font-family: Lato;
+}
+
+.maleclass{
+  color: red;
+}
+.femaleclass {
+  color: green;
+}
+.defaultclass {
+  color:blue;
+}

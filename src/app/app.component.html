@@ -1,0 +1,65 @@
+<hello name="{{ name }}"></hello>
+<p>Start editing to see some magic happendg :)</p>
+
+<div *ngIf="users">
+  <div *ngFor="let user of users">
+    <div [ngSwitch]="user.gender">
+      <div class="maleclass" *ngSwitchCase="'m'">
+        {{ user.names }}
+      </div>
+      <div class="femaleclass" *ngSwitchCase="'f'">
+        {{ user.names }}
+      </div>
+      <div class="defaultclass" *ngSwitchDefault="'f'">
+        {{ user.names }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<br />
+<div *ngIf="users; else noUserTemplate">
+  <div *ngFor="let user of users">
+    <div [ngSwitch]="user.gender">
+      <div class="maleclass" *ngSwitchCase="'m'">
+        {{ user.names }}
+      </div>
+      <div class="femaleclass" *ngSwitchCase="'f'">
+        {{ user.names }}
+      </div>
+      <div class="defaultclass" *ngSwitchDefault>
+        {{ user.names }}
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<br />
+
+
+<p>Template concept</p>
+<div *ngIf="users; then UserTemplate; else noUserTemplate"></div>
+<br />
+<ng-template #UserTemplate>
+  <div *ngFor="let user of users; index as i; even as even; odd as odd ">
+    <div [ngSwitch]="user.gender">
+      <div class="maleclass" *ngSwitchCase="'m'">
+      {{i}} {{even}} {{odd}}  {{ user.names }}
+      </div>
+      <div class="femaleclass" *ngSwitchCase="'f'">
+        {{i}} {{even}} {{odd}} {{ user.names }}
+      </div>
+      <div class="defaultclass" *ngSwitchDefault>
+        {{i}}  {{even}} {{odd}} {{ user.names }}
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template #noUserTemplate> No user found </ng-template>
+
+<p></p>
+
+<ng-template ngFor [ngForOf]="users" let-user let-i="index" > 
+{{user.names}} 
+{{i}}
+</ng-template>
